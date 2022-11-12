@@ -1,28 +1,33 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class Main {
+public class BaekJoon10815 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        // N, M을 공백을 기준으로 구분하여 입력 받기
         int n = sc.nextInt();
-        int m = sc.nextInt();
-        int result = 0;
-
-        // 한 줄씩 입력 받아 확인하기
+        int arr1[] = new int[n];
         for (int i = 0; i < n; i++) {
-            // 현재 줄에서 '가장 작은 수' 찾기
-            int min_value = 10001;
-            for (int j = 0; j < m; j++) {
-                int x = sc.nextInt();
-                min_value = Math.min(min_value, x);
-            }
-            // '가장 작은 수'들 중에서 가장 큰 수 찾기
-            result = Math.max(result, min_value);
+            arr1[i] = sc.nextInt();
         }
-
-        System.out.println(result); // 최종 답안 출력
+        int m = sc.nextInt();
+        int arr2[] = new int[m];
+        int result[] = new int[m];
+        for (int i = 0; i < m; i++) {
+            arr2[i] = sc.nextInt();
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            for (int j = 0; j < arr1.length; j++) {
+                if (arr2[i] == arr1[j]) {
+                    result[i] = 1;
+                    break;
+                } else {
+                    result[i] = 0;
+                }
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            System.out.print(result[i] + " ");
+        }
     }
-
 }
+------------------------------------------------------------------------------------------
