@@ -40,5 +40,57 @@ public class Main {
             System.out.print(arr[i] + " ");
         }
     }
-
 }
+=====================================================================================
+import java.util.Scanner;
+
+public class QuickSort {
+
+    public static void quickSort(int[]arr, int start, int end) {
+        if(start>=end) {return;} //원소가 1개일 경우 종료
+        int pivot = start; //피벗은 리스트의 첫번째 요소
+        int left = start+1;
+        int right=end;
+        while(left<=right) {
+            while(left<=end&&arr[left]<=arr[pivot]) {
+                left++; //피벗보다 큰 데이터를 찾을 때까지 반복
+            }
+            while(right>start&&arr[right]>=arr[pivot]) {
+                right--; //피벗보다 작은 데이터를 찾을 때 까지 반복
+            }
+
+            if(left>right) {//데이터가 엇갈린다면
+                int temp = arr[pivot];
+                arr[pivot] = arr[right];
+                arr[right] = temp;
+            }else {
+                int temp = arr[left];
+                arr[left]= arr[right];
+                arr[right]=temp;
+            }
+
+
+        }
+        quickSort(arr, start, right-1); //분할이후 왼쪽에서 정렬수행
+        quickSort(arr, right+1,end);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("요솟 수 :");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("arr[" + i + "] : ");
+            arr[i] = sc.nextInt();
+        }
+
+        quickSort(arr,0,arr.length-1);
+
+        System.out.println("오름차순으로 정렬 했습니다.");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("arr[" + i + "] : " + arr[i]);
+        }
+
+}}
